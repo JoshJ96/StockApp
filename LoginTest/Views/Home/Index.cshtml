@@ -1,0 +1,31 @@
+﻿@using LoginTest.Models
+@model LoginViewModel
+
+<div align="center">
+    <br />
+    <img src="~/Content/Pictures/FoxLogo.png" alt="" />
+    <br /><br />
+    <h1>Welcome to Josh Industries</h1>
+    <p>A sample logistics web app created with C#.NET, MVC, and Bootstrap 4.4.1</p>
+    <br /><br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="jumbotron">
+            <h3>You are currently logged in as: @User.Identity.Name</h3>
+            <p>Manage your user account <a href="~/Manage/Index">here.</a></p>
+        </div>
+    }
+    else
+    {
+        <div class="jumbotron">
+            <h3>You are not signed in. You can sign in <a href="/account/login">here</a></h3>
+            <small>
+                <i>
+                    Guest users can view database records,
+                    but only registered users can create and delete records
+                </i>
+            </small>
+        </div>
+    }
+</div>
+<br />

@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://kit.fontawesome.com/df855812b5.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <!--Top navbar-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="nav-link text-white" href="/home/">Josh Industries</a>
+        <!--Navbar Toggle Button for mobile view-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Navbar contents-->
+        <div class="collapse navbar-collapse" id="">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active text-white">
+                    <a class="nav-link" href="/home/"> Home</a>
+                </li>
+                <li class="nav-item active text-white">
+                    <a class="nav-link" href="/home/about">About</a>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+
+    <!--Row holding sidebar, body, and white space placeholder page-->
+    <div class="row">
+        <!--Collapsable Sidebar-->
+        <div class="col-md-2">
+            <div class="collapse d-md-block" id="navbarCollapse" >
+                <div class="card card-body">
+                    <ul class="navbar-nav mr-auto">
+
+                                <!--Inventory Tab-->
+                                <li class="nav-item active">
+                                    <b>Inventory</b>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/inventory/viewinventory"><i class="fas fa-search"></i> View Products</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/inventory/modify"><i class="fas fa-edit"></i> Modify Products</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/inventory/add"><i class="fas fa-plus"></i> New Product</a>
+                                </li>
+                                <br />
+
+                                <!--Customers Tab-->
+                                <li class="nav-item active">
+                                    <b>Customers</b>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/customer/viewcustomers"><i class="fas fa-street-view"></i> View Customers</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/customer/manage"><i class="fas fa-clipboard-list"></i> Manage Customers</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/customer/add"><i class="fas fa-plus"></i> New Customer</a>
+                                </li>
+                                <br />
+
+                                <!--Sales Tab-->
+                                <li class="nav-item active">
+                                    <b>Sales</b>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/sales/manage"><i class="fas fa-tasks"></i> Manage Sales</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/sales/create"><i class="fas fa-plus"></i> New Sale</a>
+                                </li>
+                                <br />
+
+                                <!--Accounting Tab-->
+                                <li class="nav-item active">
+                                    <b>Accounting</b>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/accounting/manageinvoices"><i class="fas fa-search-dollar"></i> Manage Invoices</a>
+                                </li>
+                                <br />
+
+                                <!--Management Tab-->
+                                <li class="nav-item active">
+                                    <b>Admin</b>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/management/setpermissions"><i class="fas fa-cog"></i> Set Permissions</a>
+                                </li>
+                                <br />
+
+                                <!--Account Tab-->
+                                <li class="nav-item active">
+                                    <b>Account</b>
+                                </li>
+                                @Html.Partial("_LoginPartial")
+                                <br />
+
+                            </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--Body Container-->
+        <div class="col-md-8">
+            <div class="container body-content fade-in">
+                <br />
+                @RenderBody()
+                <hr />
+                <footer class>
+                    <p class="mt-5 mb-3 text-muted" align="center">© Joshua Paul 2020</p>
+                </footer>
+            </div>
+        </div>
+
+        <!--Empty container-->
+        <div class="col-md-2"></div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
