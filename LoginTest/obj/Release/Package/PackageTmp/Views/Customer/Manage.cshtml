@@ -1,8 +1,101 @@
-﻿
-@{
-    ViewBag.Title = "Manage";
+﻿@model LoginTest.Models.Customer
+@using LoginTest.DataAccess.Business_Logic
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    if (UserProcessor.GetUserRole(User.Identity.Name).Name != "Management")
+    {
+        <div class="alert alert-warning alert-dismissible"><h2>Security Warning <i class="fas fa-lock"></i></h2>
+         Your account type is <b>@UserProcessor.GetUserRole(User.Identity.Name).Name</b>.
+         To prevent unauthorized and potentially hazardous data access, only <b>Sales & Admin</b> users
+         can add & modify customer records.
+         If you are a recruiter viewing this site as part of my portfolio, please contact me at
+        <a href="mailto:joshuajaworowski@gmail.com">joshuajaworowski@gmail.com</a>
+         if you would like to be given data access.
+        </div>
+    }
+    if (UserProcessor.GetUserRole(User.Identity.Name).Name == "Management")
+    {
+        if (ViewBag.State == "Success")
+        {
+            <div class="alert alert-success alert-dismissible"><h2>Success <i class="fas fa-check"></i></h2> Information for <b>"@Model.Name"</b> has been successfully updated.</div>
+        }
+        <div class="form-group text-center">
+            <h2>Modify Customer Information</h2>
+            <br /><hr />
+                <p>Enter 6-digit Customer ID number</p>
+                <div align="center">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                    <p class="text-danger">@ViewBag.Message</p>
+                    <input type="submit" name="submit" value="Search" class="btn btn-primary btn-block" />
+                </div>
+                <br />
+
+            @if (ViewBag.Valid == "True")
+            {
+                <hr /><br />
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>
+                        Customer ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(Model => Model.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.State)
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                            @Html.DisplayFor(Model => Model.ID)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control text-center" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control text-center" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control text-center" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control text-center" } })
+                        </td>
+                </tr>
+            </table>
+            <div align="center">
+                <input type="submit" name="submit" id="modify" value="Submit Changes" class="btn btn-primary btn-block"/>
+                <input type="submit" name="submit" id="reset" value="Clear" class="btn btn-secondary btn-block"/>
+            </div>
+            }
+        </div>
+    }
 }
-
-<h2>Manage</h2>
-
-<p>Not implemented yet!</p>

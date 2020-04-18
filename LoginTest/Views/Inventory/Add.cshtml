@@ -1,8 +1,76 @@
-﻿
-@{
-    ViewBag.Title = "Add";
+﻿@using LoginTest.Models;
+@using LoginTest.DataAccess.Business_Logic
+@model LoginTest.Models.Product
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    if (UserProcessor.GetUserRole(User.Identity.Name).Name != "Management")
+    {
+        <div class="alert alert-warning alert-dismissible"><h2>Security Warning <i class="fas fa-lock"></i></h2>
+         Your account type is <b>@UserProcessor.GetUserRole(User.Identity.Name).Name</b>.
+         To prevent unauthorized and potentially hazardous data access, only <b>admin</b> users
+         can create and modify data records.
+         If you are a recruiter viewing this site as part of my portfolio, please contact me at
+        <a href="mailto:joshuajaworowski@gmail.com">joshuajaworowski@gmail.com</a>
+         if you would like to be given data access.
+        </div>
+    }
+    if (UserProcessor.GetUserRole(User.Identity.Name).Name == "Management")
+    {
+        if (ViewBag.State == "Success")
+    {
+        <div class="alert alert-success alert-dismissible"><h2>Success <i class="fas fa-check"></i></h2> The product <b>"@ViewBag.ProductName"</b> has been created under Product Number <b>@ViewBag.ProductID</b>.</div>
+    }
+        <div class="form-group text-center">
+            <h2>Create a New Product Entry</h2>
+            <br /><hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        Qty.
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Brand
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control text-center", @Value ="" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control text-center", @Value ="" } })
+                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control text-center", @Value ="" } })
+                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control text-center", @Value ="" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control text-center", @Value ="" } })
+                        @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+            <div align="center">
+                <input type="submit" name="submit" id="add" value="Add Product" class="btn btn-primary btn-block"/>
+                <p><i>A product number will be generated for you.</i></p>
+            </div>
+        </div>
+    }
 }
-
-<h2>Add</h2>
-
-<p>Not implemented yet!</p>

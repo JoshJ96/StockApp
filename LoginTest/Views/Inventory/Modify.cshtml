@@ -1,11 +1,30 @@
 ﻿@model LoginTest.Models.Product
+@using LoginTest.DataAccess.Business_Logic
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="form-group text-center">
-        <h2>Modify An Existing Product</h2>
 
+    if (UserProcessor.GetUserRole(User.Identity.Name).Name != "Management")
+    {
+        <div class="alert alert-warning alert-dismissible"><h2>Security Warning <i class="fas fa-lock"></i></h2>
+         Your account type is <b>@UserProcessor.GetUserRole(User.Identity.Name).Name</b>.
+         To prevent unauthorized and potentially hazardous data access, only <b>admin</b> users
+         can create and modify data records.
+         If you are a recruiter viewing this site as part of my portfolio, please contact me at
+        <a href="mailto:joshuajaworowski@gmail.com">joshuajaworowski@gmail.com</a>
+         if you would like to be given data access.
+        </div>
+    }
+    if (UserProcessor.GetUserRole(User.Identity.Name).Name == "Management")
+    {
+        if (ViewBag.State == "Success")
+        {
+        <div class="alert alert-success alert-dismissible"><h2>Success <i class="fas fa-check"></i></h2> The product <b>"@Model.Name"</b> has been successfully modified.</div>
+        }
+        <div class="form-group text-center">
+        <h2>Modify An Existing Product</h2>
+        <br /><hr />
             <p>Enter 6-digit product number</p>
             <div align="center">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -87,5 +106,6 @@
             <input type="submit" name="submit" id="reset" value="Clear" class="btn btn-secondary btn-block"/>
         </div>
         }
-    </div>
+        </div>
+    }
 }

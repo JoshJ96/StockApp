@@ -1,58 +1,69 @@
 ﻿@model List<LoginTest.Models.Product>
 
-<div class="text-center">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-    <h2>Warehouse Products</h2>
-    <p><i>View inventory records</i></p>
-    <br />
-    <hr />
-    <div class="row col-md-11">
-        <input type="submit" value="Search" class="btn btn-outline-primary" />
-        <input type="text" placeholder="Product number, name, location..." name="searchInput" class="form-control" />
+    <div class="text-center">
+        <h2>Warehouse Products</h2>
+        <p><i>View inventory records</i></p>
+        <br /><hr />
+
+        <div class="row col-md-11">
+            <input type="submit" value="Search" class="btn btn-outline-primary" />
+            <input type="text" placeholder="Product number, name, location..." name="searchInput" class="form-control" />
+        </div>
+        <table class="table table-striped table-hover">
+
+            <tr>
+                <thead>
+                <th>
+                    Number
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Qty.
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Brand
+                </th>
+                </thead>
+            </tr>
+
+            <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+            </tr>
+            }
+            </tbody>
+
+        </table>
     </div>
-    <table class="table table-striped table-hover">
-        <tr>
-            <th>
-                Number
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Location
-            </th>
-            <th>
-                Qty.
-            </th>
-            <th>
-                Price
-            </th>
-            <th>
-                Brand
-            </th>
-        </tr>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-        </tr>
-        }
-    </table>
-</div>
+}

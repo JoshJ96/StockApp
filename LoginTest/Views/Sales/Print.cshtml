@@ -1,0 +1,104 @@
+﻿<body onload="javascript:window.print()">
+
+@model LoginTest.Models.Order
+@using LoginTest.Models;
+@{
+    ViewBag.Title = "ReviewOrder";
+}
+@{ Model.lineItems = Session["LineItems"] as List<LineItem>;
+   Model.customerInfo = Session["CustomerInfo"] as Customer; }
+
+@using (Html.BeginForm())
+{
+
+
+<div class="row">
+
+        <div class="col-md-12 table-bordered text-center">
+            <h1><b>Josh Industries</b></h1>
+            <h4>Customer pick ticket</h4>
+            <br /><br />
+        </div>
+        
+
+        <div class="col-md-9 table-bordered text-center" align="center">
+            <br />
+            <h4 align="center"><b>Product List</b></h4><br />
+            <table class="table table-bordered table-striped text-center" align="center">
+            <tr>
+                <th class="text-center">
+                    Line #
+                </th>
+                <th class="text-center">
+                    Product Number
+                </th>
+                <th>
+                    Location
+                </th>
+                <th class="text-center">
+                    Quantity
+                </th>
+                <th class="text-center">
+                    Price
+                </th>
+                <th class="text-center">
+                    Total
+                </th>
+            </tr>
+            @{decimal totalOrderPrice = 0; }
+            @for (int i = 0; i < Model.lineItems.Count - 1; i++)
+            {
+             <tr>
+                <td class="text-center">
+                    @{int n = i + 1; }
+                    @n
+                </td>
+                <td class="text-center">
+                    @Model.lineItems[i].Number
+                </td>
+                <td>
+                    @Model.lineItems[i].Location
+                </td>
+                <td class="text-center">
+                    @Model.lineItems[i].Quantity
+                </td>
+                <td>
+                    @Model.lineItems[i].Price
+                </td>
+                <td>
+                    @{decimal totalLinePrice = Model.lineItems[i].Price * Model.lineItems[i].Quantity;
+                        totalOrderPrice += totalLinePrice;}
+                    @totalLinePrice
+                </td>
+            </tr>
+            }
+        </table>
+            <h3>Total Price: <b>@totalOrderPrice</b></h3><br /><br />
+        </div>
+
+
+        <div class="col-md-3 table-bordered text-center" align="center">
+            <br /><h4 align="center"><b>Customer</b></h4><br />
+            <div class="form-group" align="center">
+                <b>Customer ID</b>
+                    @Html.DisplayFor(m => m.customerID, new { @class = "form-control text-center" })
+            </div>
+            <div class="form-group" align="center">
+                <b>Shipping Method</b>
+                    @Html.DisplayFor(m => m.shippingMethod, new { @class = "form-control text-center"})
+            </div>
+            <div class="form-group" align="center">
+                <b>Payment Method</b>
+                    @Html.DisplayFor(m => m.paymentMethod, new { @class = "form-control text-center" })
+            </div>
+            <hr />
+            <b>@Model.customerInfo.Name</b><br />
+            <b>@Model.customerInfo.Address</b><br />
+            <b>@Model.customerInfo.City, @Model.customerInfo.State</b>
+        </div>
+        <br />
+        <br />
+        
+    @Html.ActionLink("Index", "Home")
+}
+</body>

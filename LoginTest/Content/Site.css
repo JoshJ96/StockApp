@@ -12,14 +12,13 @@
     }
 }
 
-@media (min-width: 768px) {
-    .collapse.dont-collapse-sm {
-        display: block;
-        height: auto !important;
-        visibility: visible;
-    }
+.zoom {
+    transition: transform .2s; /* Animation */
 }
 
+.zoom:hover {
+    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
 
 body {
     padding-top: 50px;

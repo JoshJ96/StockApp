@@ -1,8 +1,47 @@
-﻿
-@{
-    ViewBag.Title = "Create";
+﻿@model LoginTest.Models.Order
+@using LoginTest.Models;
+
+@using (Html.BeginForm())
+{
+
+<div>
+    <h1 align="center">Create a new order</h1>
+    <br /><br />
+
+    <div class="alert-secondary row">
+
+        
+
+
+        <div class="col-md-9 table-bordered text-center" align="center">
+            <br /><h4 align="center"><b>Product List</b></h4><br />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @{ List<LineItem > newLine = Session["LineItems"] as List<LineItem>;
+                }
+            @Html.Partial("_ProductListPartial", newLine[newLine.Count-1])
+
+        <button type="submit" name="addLine" value="Add Line" class="btn btn-secondary btn-block">Add Line</button>
+        </div>
+
+
+        <div class="col-md-3 table-bordered text-center" align="center">
+            <br /><h4 align="center"><b>Customer</b></h4><br />
+            <div class="form-group" align="center">
+                <b>Customer ID</b>
+                    @Html.TextBoxFor(m => m.customerID, new { @class = "form-control text-center" })
+            </div>
+            <div class="form-group" align="center">
+                <b>Shipping Method</b>
+                    @Html.TextBoxFor(m => m.shippingMethod, new { @class = "form-control text-center"})
+            </div>
+            <div class="form-group" align="center">
+                <b>Payment Method</b>
+                    @Html.TextBoxFor(m => m.paymentMethod, new { @class = "form-control text-center" })
+            </div>
+        </div>
+        <button type="submit" name="finalize" value="Add Line" class="btn-primary btn-block btn-lg">Next Step: Review Order</button>
+        <br />
+        
+    </div>
+</div>
 }
-
-<h2>Create</h2>
-
-<p>Not implemented yet!</p>
