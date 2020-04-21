@@ -1,5 +1,9 @@
 ﻿<body onload="javascript:window.print()">
 
+    @{
+    ViewBag.Title = "Print Order";
+}
+
 @model LoginTest.Models.Order
 @using LoginTest.Models;
 @{
@@ -9,7 +13,7 @@
    Model.customerInfo = Session["CustomerInfo"] as Customer; }
 
 @using (Html.BeginForm())
-{
+{ 
 
 
 <div class="row">
@@ -71,7 +75,7 @@
                     @totalLinePrice
                 </td>
             </tr>
-            }
+                        }
         </table>
             <h3>Total Price: <b>@totalOrderPrice</b></h3><br /><br />
         </div>
@@ -85,7 +89,7 @@
             </div>
             <div class="form-group" align="center">
                 <b>Shipping Method</b>
-                    @Html.DisplayFor(m => m.shippingMethod, new { @class = "form-control text-center"})
+                    @Html.DisplayFor(m => m.shippingMethod, new { @class = "form-control text-center" })
             </div>
             <div class="form-group" align="center">
                 <b>Payment Method</b>
@@ -100,5 +104,5 @@
         <br />
         
     @Html.ActionLink("Index", "Home")
+    </div>
 }
-</body>

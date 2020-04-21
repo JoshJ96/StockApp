@@ -2,32 +2,51 @@
 @using LoginTest.DataAccess.Business_Logic
 @model LoginViewModel
 
+@{
+    ViewBag.Title = "Home";
+}
+
 <div class="text-center">
     <br />
     <img src="~/Content/Pictures/FoxLogo.png" alt="" />
     <br /><br />
-    <h1>Welcome to Josh Industries</h1>
+    <h1>Welcome to Josh's App.</h1>
 
-    <p>A sample logistics web app created with C#.NET, MVC, and Bootstrap 4.4.1</p>
+    <p>An ERP web app created with ASP.NET, MVC design pattern, and Bootstrap 4.4.1</p>
+    <p>Hosted on Microsoft Azure Cloud Services.</p>
     <br /><br />
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div>
-            <h3>You are currently logged in as: @User.Identity.Name. User type: @UserProcessor.GetUserRole(User.Identity.Name).Name</h3>
-            <p>Manage your user account <a href="~/Manage/Index">here.</a></p>
+          <br /><hr />
+    <div class="row">
+        <div class="col-md-3">
+
         </div>
-    }
-    else
-    {
-        <div>
-            <h3>You are not signed in. You can sign in <a href="/account/login">here</a></h3>
-            <small>
-                <i>
-                    Guest users can view database records,
-                    but only registered users can create and delete records
-                </i>
-            </small>
+        <div class="col-md-6 alert alert-warning">
+        @if (User.Identity.IsAuthenticated)
+            {
+                <div>
+                    <h4>You are currently logged in as: <b>@User.Identity.Name</b>. User type: <b>@UserProcessor.GetUserRole(User.Identity.Name).Name</b></h4>
+                    <br />
+                    <h5>Manage your user account <a href="~/Manage/Index">here.</a></h5>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <h3>You are not signed in. You can sign in <a href="/account/login">here</a></h3>
+                    <small>
+                        <i>
+                            Guest users can view database records,
+                            but only registered users can create and delete records
+                        </i>
+                    </small>
+                </div>
+            }
         </div>
-    }
+        <div class="col-md-3">
+
+        </div>
+
+    </div>
+        
 </div>
 <br />

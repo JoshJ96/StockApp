@@ -2,6 +2,10 @@
 @using LoginTest.DataAccess.Business_Logic
 @model LoginTest.Models.Product
 
+@{
+    ViewBag.Title = "Add Product";
+}
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()

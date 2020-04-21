@@ -1,5 +1,10 @@
 ﻿@model LoginTest.Models.Customer
 @using LoginTest.DataAccess.Business_Logic
+
+@{
+    ViewBag.Title = "Manage Customers";
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

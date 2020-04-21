@@ -1,11 +1,29 @@
 ﻿@model LoginTest.Models.Order
 @using LoginTest.Models;
+@using LoginTest.DataAccess.Business_Logic;
+
+@{
+    ViewBag.Title = "Create Sale";
+}
 
 @using (Html.BeginForm())
 {
 
 <div>
-    <h1 align="center">Create a new order</h1>
+    @if (UserProcessor.GetUserRole(User.Identity.Name).Name != "Sales")
+    {
+        <div class="alert alert-warning alert-dismissible"><h2>Security Warning <i class="fas fa-lock"></i></h2>
+         Your account type is <b>@UserProcessor.GetUserRole(User.Identity.Name).Name</b>.
+         To prevent unauthorized and potentially hazardous data access, only <b>sales</b> users
+         can create new sales records.
+         If you are a recruiter viewing this site as part of my portfolio, please contact me at
+        <a href="mailto:joshuajaworowski@gmail.com">joshuajaworowski@gmail.com</a>
+         if you would like to be given data access.
+        </div>
+    }
+    @if (UserProcessor.GetUserRole(User.Identity.Name).Name == "Sales")
+    {
+        <h1 align="center">Create a new order</h1>
     <br /><br />
 
     <div class="alert-secondary row">
@@ -43,5 +61,10 @@
         <br />
         
     </div>
+    }
+
+
+
+    
 </div>
 }

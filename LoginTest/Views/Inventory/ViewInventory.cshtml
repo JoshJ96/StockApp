@@ -1,5 +1,9 @@
 ﻿@model List<LoginTest.Models.Product>
 
+@{
+    ViewBag.Title = "View Products";
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

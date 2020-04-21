@@ -2,6 +2,10 @@
 @using LoginTest.DataAccess.Business_Logic
 @model LoginTest.Models.Customer
 
+@{
+    ViewBag.Title = "New Customer";
+}
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
