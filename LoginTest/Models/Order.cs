@@ -8,6 +8,8 @@ namespace LoginTest.Models
 {
     public class Order
     {
+        public int orderNumber { get; set; }
+
         //[Required]
         //[Range(100000, 999999, ErrorMessage = "Please enter a 6-digit customer ID number")]
         public int customerID { get; set; }

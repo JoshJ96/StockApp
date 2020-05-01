@@ -23,8 +23,19 @@ namespace LoginTest.Controllers
             Session["LineItems"] = order.lineItems;
 
             //Move to create tab
-            return RedirectToAction("Create", order);
+            return RedirectToAction("NewSale", order);
         }
+
+        public ActionResult NewSale()
+        {
+            return View();
+        }
+
+
+
+
+
+
 
         public ActionResult Create(Order order)
         {

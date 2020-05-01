@@ -212,3 +212,4 @@ C:\Users\Joshua\Documents\GitHub\LoginTest\LoginTest\obj\Release\LoginTest.cspro
 C:\Users\Joshua\Documents\GitHub\LoginTest\LoginTest\obj\Release\LoginTest.csproj.CopyComplete
 C:\Users\Joshua\Documents\GitHub\LoginTest\LoginTest\obj\Release\LoginTest.dll
 C:\Users\Joshua\Documents\GitHub\LoginTest\LoginTest\obj\Release\LoginTest.pdb
+C:\Users\Joshua\Documents\GitHub\LoginTest\LoginTest\obj\Release\LoginTest.csproj.CoreCompileInputs.cache

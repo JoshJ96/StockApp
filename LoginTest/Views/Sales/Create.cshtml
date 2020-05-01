@@ -10,7 +10,7 @@
 {
 
 <div>
-    @if (UserProcessor.GetUserRole(User.Identity.Name).Name != "Sales")
+    @if (UserProcessor.GetUserRole(User.Identity.Name).Name != "Sales" && UserProcessor.GetUserRole(User.Identity.Name).Name != "Management")
     {
         <div class="alert alert-warning alert-dismissible"><h2>Security Warning <i class="fas fa-lock"></i></h2>
          Your account type is <b>@UserProcessor.GetUserRole(User.Identity.Name).Name</b>.
@@ -21,7 +21,7 @@
          if you would like to be given data access.
         </div>
     }
-    @if (UserProcessor.GetUserRole(User.Identity.Name).Name == "Sales")
+    @if (UserProcessor.GetUserRole(User.Identity.Name).Name == "Sales" || UserProcessor.GetUserRole(User.Identity.Name).Name == "Management")
     {
         <h1 align="center">Create a new order</h1>
     <br /><br />
@@ -31,18 +31,18 @@
         
 
 
-        <div class="col-md-9 table-bordered text-center" align="center">
+        <div class="col-md-9 table-bordered text-center text-white" align="center">
             <br /><h4 align="center"><b>Product List</b></h4><br />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @{ List<LineItem > newLine = Session["LineItems"] as List<LineItem>;
                 }
             @Html.Partial("_ProductListPartial", newLine[newLine.Count-1])
 
-        <button type="submit" name="addLine" value="Add Line" class="btn btn-secondary btn-block">Add Line</button>
+        <button type="submit" name="addLine" value="Add Line" class="btn btn-outline-success btn-block">Add Line</button>
         </div>
 
 
-        <div class="col-md-3 table-bordered text-center" align="center">
+        <div class="col-md-3 table-bordered text-white text-center" align="center">
             <br /><h4 align="center"><b>Customer</b></h4><br />
             <div class="form-group" align="center">
                 <b>Customer ID</b>
@@ -57,7 +57,8 @@
                     @Html.TextBoxFor(m => m.paymentMethod, new { @class = "form-control text-center" })
             </div>
         </div>
-        <button type="submit" name="finalize" value="Add Line" class="btn-primary btn-block btn-lg">Next Step: Review Order</button>
+        <br />
+        <button type="submit" name="finalize" value="Add Line" class="btn-success btn-block btn-lg">Next Step: Review Order</button>
         <br />
         
     </div>

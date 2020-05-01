@@ -20,7 +20,7 @@
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders)
                     {
-                        <button type="submit" class="btn btn-outline-dark" style="width: 200px; height:40px; margin:3px;" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><img src="~/Content/Pictures/GoogleG.png" alt="" /> Sign in with @p.AuthenticationType</button>
+                        <button type="submit" class="btn btn-outline-light" style="width: 200px; height:40px; margin:3px;" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><img src="~/Content/Pictures/GoogleG.png" alt="" /> Sign in with @p.AuthenticationType</button>
                     }
                 </p>
             </div>
